@@ -69,6 +69,22 @@ class awsCloudSearch {
             return $this->call($this->search_endpoint ."/search?q=".urlencode($term)."&".http_build_query($params), "GET", array());
         }
     }
+    
+    
+    /**
+     * Public search API call by field
+     *
+     */
+    
+    public function searchby_field($term, $params = array())
+    {
+    	if (sizeof($params) == 0) {
+    		return $this->call($this->search_endpoint ."/search?bq=".urlencode($term), "GET", array());
+    	}
+    	else {
+    		return $this->call($this->search_endpoint ."/search?bq=".urlencode($term)."&".http_build_query($params), "GET", array());
+    	}
+    }
 	
 	/**
    * Private function that return the results of a GET or POST call to your domain host.
